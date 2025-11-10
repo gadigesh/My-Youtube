@@ -3,8 +3,9 @@ import { YOUTUBE_VIDEOS_API } from "../utils/Constant";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 
-const VideoContainer = () => {
+const VideoContainer = ({ suggValuse }) => {
   const [videos, setVideos] = useState([]);
+
   useEffect(() => {
     getVideos();
   }, []);
@@ -14,13 +15,17 @@ const VideoContainer = () => {
     const json = await data.json();
     setVideos(json.items);
   };
-
+  //   if (!suggValuse) {
+  //     return null;
+  //   }
+  // console.log("suggValuse", suggValuse);
+  // setVideos(suggValuse);
   return (
     <>
       <div className="flex flex-wrap">
         {videos.map((videos, index) => (
-          <Link to={"/Watch?v=" + videos.id}>
-            <VideoCard key={index} info={videos} />
+          <Link key={videos.id} to={"/Watch?v=" + videos.id}>
+            <VideoCard key={videos.id} info={videos} />
           </Link>
         ))}
       </div>

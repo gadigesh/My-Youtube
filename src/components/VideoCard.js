@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoCard = ({ info }) => {
   if (!info) return null;
-  console.log(info);
+  //console.log(info);
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
   return (
